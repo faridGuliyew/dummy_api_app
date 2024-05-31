@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.home_fragment.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_movie" >
-
-    </androidx.recyclerview.widget.RecyclerView>
-
     <Button
         android:id="@+id/buttonClear"
         android:layout_width="0dp"
@@ -42,4 +29,12 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonClear"
         app:layout_constraintEnd_toEndOf="@+id/buttonClear"
         app:layout_constraintStart_toStartOf="@+id/buttonClear" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

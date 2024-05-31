@@ -3,7 +3,7 @@ package com.example.demoapiapp.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularMoviesResponse(
+data class PopularMoviesResponseDto(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")

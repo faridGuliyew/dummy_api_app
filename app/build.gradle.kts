@@ -1,6 +1,7 @@
 plugins {
     id ("kotlin-kapt")
     id ("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
@@ -53,6 +54,9 @@ dependencies {
     //di
     implementation ("com.google.dagger:hilt-android:2.48")
     kapt ("com.google.dagger:hilt-compiler:2.48")
+
+    //firebase
+    implementation ("com.google.firebase:firebase-auth:23.0.0")
 
 
     implementation(libs.androidx.core.ktx)

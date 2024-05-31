@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "315285408458",
+    "project_id": "adel-online-app",
+    "storage_bucket": "adel-online-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315285408458:android:197aebc6e896649396c233",
+        "android_client_info": {
+          "package_name": "com.example.demoapiapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAzA42CFsZp1jO4bQzuobY0Hj3DXxMglg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

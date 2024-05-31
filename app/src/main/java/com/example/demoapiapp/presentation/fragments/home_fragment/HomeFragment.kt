@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.demoapiapp.R
 import com.example.demoapiapp.base.BaseFragment
 import com.example.demoapiapp.databinding.FragmentHomeBinding
 import com.example.demoapiapp.presentation.adapters.PopularMoviesAdapter
@@ -25,6 +27,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(bindingRoot = FragmentHom
         super.onViewCreated(view, savedInstanceState)
         observe()
         setRv()
+
+        binding.button2.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_bottomSheetFragment)
+        }
     }
 
     fun observe() {
@@ -37,6 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(bindingRoot = FragmentHom
     }
 
     fun setRv() {
-        binding.rv.adapter = adapter
+        binding.viewPager.adapter = adapter
     }
 }

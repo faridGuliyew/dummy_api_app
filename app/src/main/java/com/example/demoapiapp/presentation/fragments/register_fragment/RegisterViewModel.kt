@@ -29,10 +29,10 @@ class RegisterViewModel @Inject constructor (val authRepository: AuthRepository)
         email.update { authRepository.getCurrentUserName() }
     }
 
-    fun register(username : String, password : String) {
+    fun register(username : String, password : String, email : String) {
         viewModelScope.launch {
             isLoading.update { true }
-            message.update { authRepository.register(username + "@letterbox.mymail", password) }
+            message.update { authRepository.register(username, password, email) }
             isLoading.update { false }
         }
     }
@@ -40,7 +40,7 @@ class RegisterViewModel @Inject constructor (val authRepository: AuthRepository)
     fun login(username : String, password : String) {
         viewModelScope.launch {
             isLoading.update { true }
-            message.update { authRepository.login(username + "@letterbox.mymail", password) }
+            message.update { authRepository.login(username, password) }
             isLoading.update { false }
         }
     }

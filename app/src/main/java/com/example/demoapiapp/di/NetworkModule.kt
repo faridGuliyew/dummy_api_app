@@ -8,6 +8,8 @@ import com.example.demoapiapp.domain.repository.MovieRepository
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,8 +46,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository (firebaseAuth : FirebaseAuth) : AuthRepository {
-        return AuthRepositoryImpl(firebaseAuth)
+    fun provideAuthRepository (firestore: FirebaseFirestore, firebaseAuth : FirebaseAuth) : AuthRepository {
+        return AuthRepositoryImpl(firebaseAuth, firestore)
     }
 
     @Provides
@@ -53,5 +55,12 @@ class NetworkModule {
     fun provideFirebaseAuth () : FirebaseAuth {
         return Firebase.auth
     }
+
+    @Provides
+    @Singleton
+    fun provideFirestore() : FirebaseFirestore {
+        return FirebaseFirestore.getInstance()
+    }
+    
 
 }

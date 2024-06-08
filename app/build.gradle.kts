@@ -56,7 +56,8 @@ dependencies {
     kapt ("com.google.dagger:hilt-compiler:2.48")
 
     //firebase
-    implementation ("com.google.firebase:firebase-auth:23.0.0")
+    implementation (libs.firebase.auth)
+    implementation (libs.firebase.firestore)
 
 
     implementation(libs.androidx.core.ktx)

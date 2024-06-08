@@ -5,23 +5,20 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.Response
 import retrofit2.http.POST
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-interface AuthApi {
-
-    @POST("/login")
-    suspend fun register() : Response
-}
 class AuthRepositoryImpl @Inject constructor(
-    private val firebase : FirebaseAuth
+    private val auth : FirebaseAuth,
+    private val firestore : FirebaseFirestore
 ) : AuthRepository {
     override suspend fun login(username: String, password: String): String {
         return suspendCoroutine { coroutine->
-            firebase.signInWithEmailAndPassword(username, password).addOnSuccessListener {
+            auth.signInWithEmailAndPassword(username, password).addOnSuccessListener {
                 coroutine.resume("Login Success")
             }.addOnFailureListener {
                 coroutine.resume("Login Failed: ${it.message}")
@@ -29,9 +26,18 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun register(username: String, password: String): String {
+    override suspend fun register(username: String, password: String, email : String): String {
         return suspendCoroutine { coroutine->
-            firebase.createUserWithEmailAndPassword(username, password).addOnSuccessListener {
+            auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+                firestore.collection("nicknames").document(email).set(
+                    listOf(
+                        FirebaseUser(
+                            username,
+                            email,
+                            password
+                        )
+                    )
+                )
                 coroutine.resume("Register Success")
             }.addOnFailureListener {
                 coroutine.resume("Register Failed: ${it.message}")
@@ -40,6 +46,14 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun getCurrentUserName(): String? {
-        return firebase.currentUser?.email?.split("@")?.first()
+        return auth.currentUser?.email?.split("@")?.first()
     }
 }
+
+
+
+data class FirebaseUser (
+    val nickname : String = "",
+    val email : String = "",
+    val password : String = ""
+)
